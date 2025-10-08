@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> KRIDA.com </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav> 
+        <h2> <a href ="{{url_for('index')}}">
+            ⚽ KRIDA.com
+        </a></h2>
+        <ul>
+            {% if session.get('user_id')%}
+            <li> Hello, {{ session['username']}}</li>
+            <li><a href ="{{url_for('view_cart')}}"> 🛒Cart </a></li>
+            {% ifsession.get('is_admin')%}
+            <li><a href="{{url_for('add_product')}}"> ➕ Add Product </a></li>
+            {% endif %}
+            <li><a href ="{{ url_for('logout')}}"> Logout </a></li>
+            {%else %}
+            <li> <a href="{{ url_for ('login')}}"> Login</a></li>
+            <li><a href= "{{ url_for ('register')}}"> Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container"> 
+        {% with messages = get_flashed_messages(with_categories=true)%}
+        {% if messages %}
+        {%for category, message in messages %}
+        <div cass="flash {{ category}}"> 
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock%}
+    </div>
+    <footer>
+        <p> © 2025 KRIDA.com | Built with flask + MySQL </p>
+    </footer>
+</body>
+</html>
