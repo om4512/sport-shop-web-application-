@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ current_user.username }}</h2>
+    <a href="{{ url_for('cart') }}">View Cart</a> | <a href="{{ url_for('logout') }}">Logout</a>
+    <h3>Equipments</h3>
+    <ul>
+    {% for equipment in equipments %}
+        <li>
+            <h4>{{ equipment.name }}</h4>
+            <p>{{ equipment.description }}</p>
+            <p>Price: ${{ equipment.price }}</p>
+            <a href="{{ url_for('add_to_cart', equipment_id=equipment.id) }}">Add to Cart</a>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
