@@ -1,4 +1,4 @@
-{% extend "base.html" %}
+{% extends "base.html" %}
 {% block content %}
 <h2> Your Cart</h2>
 {% if rows %}
@@ -16,7 +16,7 @@
         <td>{{ r.price }}</td>
         <td>{{ r.price * r.quantity }}</td>
     </tr>
-    {%endfor %}
+    {% endfor %}
 </table>
 <h3> Total: ₹{{ total }}</h3>
 {% else %}

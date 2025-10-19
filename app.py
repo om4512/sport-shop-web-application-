@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import mysql.connector
+import mysql.connector.errors as mysql_errors
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from werkzeug.utils import secure_filename
@@ -8,14 +9,15 @@ app = Flask("Krida")
 app.secret_key = os.urandom(24)
 UPLOAD_FOLDER ='static/uploads'
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",          
-    "password": "032312",  
-    "database": "Krida"
-}
+db = mysql.connector.connect(
+   host="localhost",
+   user="root",
+   password="032312",
+   database="Krida",
+   auth_plugin='mysql_native_password'
+)
 def get_connection():
-  return mysql.connector.connect(**DB_CONFIG)
+   return mysql.connector.connect(db)
 def login_required(f):
    @wraps(f)
    def wrapped(*args, **kwargs):
@@ -90,7 +92,7 @@ def equipment_detail(item_id):
    item = cursor.fetchone()
    db.close()
    return render_template("equipment-detail.html", item=item)
-@app.rpute("/add", methods=["GET","POST"])
+@app.route("/add", methods=["GET","POST"])
 @admin_required
 def add_equipment():
    if request.method == "POST":
@@ -139,7 +141,7 @@ def update_equipment(id):
    item = cursor.fetchone()
    db.close()
    return render_template("update_equipment.html", item=item)
-@app.route("/delete/<int:item_id")
+@app.route("/delete/<int:item_id>")
 @admin_required
 def delete_equipment(id):
    db = get_connection()
