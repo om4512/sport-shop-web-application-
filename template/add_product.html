@@ -1,5 +1,6 @@
 {%extends "base.html" %}
 {% block content %}
+<div class="glass-form">
   <h1>➕ Add New Product </h1>
   <form method="POST" emctype="multipart/form-data">
     <label> Name:</label>
@@ -16,6 +17,7 @@
     <input type="file" name="image" accept="image/*"><br><br>
     <button type="submit"> Add Equipment</button>
   </form>
-l>    <br>
+  <br>
   <a href="{{ url_for('index')}}">⬅ Back</a>
+  </div>
 { % endblock %}
