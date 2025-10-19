@@ -1,0 +1,26 @@
+{% extend "base.html" %}
+{% block content %}
+<h2> Your Cart</h2>
+{% if rows %}
+<table>
+    <tr>
+        <th> Item</th>
+        <th> Quantity</th>
+        <th> Price </th>
+        <th> Total </th>
+    </tr>
+    {% for r in rows %}
+    <tr>
+        <td>{{ r.name }}</td>
+        <td>{{ r.quantity }}</td>
+        <td>{{ r.price }}</td>
+        <td>{{ r.price * r.quantity }}</td>
+    </tr>
+    {%endfor %}
+</table>
+<h3> Total: ₹{{ total }}</h3>
+{% else %}
+<p> Your cart is empty.</p>
+{% endif %}
+<a href="{{ url_for('index')}}"> ⬅ Back to Shopping </a>
+{% endblock %}

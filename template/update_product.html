@@ -1,0 +1,21 @@
+{% extend "base.html" %}
+{% block content %}
+  <h1> ✏ Update Product</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label> Name:</label>
+    <input type="text" name="name" value="{{item.name}}" required><br>
+    <label> Category: </label>
+    <input type="text" name="category" value="{{ item.category}}" required><br>
+    <label> Decription: </label>
+    <input type="text" name=" description" value="{{ item.description}}"required><br>
+    <label> Price:</label>
+    <input type="number" step="0.01" name="price"  value="{{item.price}}"required><br>
+    <label> Stock: </label>
+    <input type="number" name="stock" value="{{ item.stock}}" required><br>
+    <label> Image:</label>
+    <input type="file" name="image" accepts="image/*"><br><br>
+    <button type="submit"> Update Equipment</button>
+  </form>
+  <br>
+  <a href="{{url_for('index')}}">⬅ Back</a>
+{% endblock %}
