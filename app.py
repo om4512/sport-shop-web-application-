@@ -17,7 +17,13 @@ db = mysql.connector.connect(
    auth_plugin='mysql_native_password'
 )
 def get_connection():
-   return mysql.connector.connect(db)
+   return mysql.connector.connect(
+      host="localhost",
+      user="root",
+      password="032312",
+      database="Krida",
+      auth_plugin='mysql_native_password'
+   )
 def login_required(f):
    @wraps(f)
    def wrapped(*args, **kwargs):
@@ -183,6 +189,6 @@ def remove_from_cart(cart_id):
    db.close()
    return redirect(url_for("view_cart"))
 if __name__== "__main__":
- if not os.path.exists(UPLOAD_FOLDER):
-   os.markedirs(UPLOAD_FOLDER)
-app.run(debug=True)
+   if not os.path.exists(UPLOAD_FOLDER):
+      os.makedirs(UPLOAD_FOLDER)
+   app.run(debug=True)
