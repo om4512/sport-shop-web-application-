@@ -7,9 +7,9 @@
 {% endif %}
 
 <hr>
-<div class="product-list">
+<div class="container">
   {% for item in items %}
-  <div class="product-card" style="border:1px solid #ccc; padding:10px; margin:10px;">
+  <div class="card" style="border:1px solid #ccc; padding:10px; margin:10px;">
     {% if item.image %}
       <img src="{{ url_for('static', filename='uploads/' ~ item.image) }}" width="150" alt="{{ item.name }}">
     {% else %}

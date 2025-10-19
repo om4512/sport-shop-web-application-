@@ -1,0 +1,170 @@
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: "Poppins",sans-serif;
+}
+body{
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  min-height: 100vh;
+  color: white;
+}
+.navbar{
+  background: rgba(255, 255,255,0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  margin: 15px auto;
+  padding: 10px 20px;
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: centre;
+  box-shadow: 0 8px 32px rgba(31,38,135,0.37);
+}
+.navbar a{
+  color:#fff;
+  text-decoration:none;
+  font-weight: 600;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+avbar a:hover{
+  color: #00d4ff;
+}
+
+.container{
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.card{
+  width: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px,30px rgba(0,0,0,0.3);
+ text-align: center;
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+.card img{
+  width: 100%;
+  height:200px;
+  object-fit: cover;
+}
+.card h3{
+  margin:10px 0;
+}
+.card p{
+  font-size: 15px;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+}
+.card .price{
+  font-weight:700;
+  color: #00ffd0;
+}
+.card button{
+  background: rgba(255,255,255,0.15);
+  color:white;
+  border:none;
+  border-radius: 8px;
+  padding:10px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.card button:hover{
+  background: #00ffd0;
+  color: #000;
+}
+.glass-form{
+  width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(31,38,135,0.37);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.glass-form h2{
+  text-align: center;
+  margin-bottom: 25px;
+  color: #e4a580;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.glass-form label{
+  display: block;
+  margin-bottom:8px;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+.glass-form input,
+.glass-form select{
+  width:100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+.glass-form input:focus{
+  background: rgbas(255,255,255,0.3);
+}
+.glass-form button{
+ width: 100%;
+ padding: 10px;
+ border:none;
+ border-radius: 12px;
+ background: linear-gradient(35eg #00d4ff, #0077ff);
+ color: white;
+ font-weight: 600;
+ cursor: pointer;
+ transition: all 0.3s ease;
+}
+.glass-form button:hover{
+  background: linear-gradient(135deg, #00ffd0, #0099ff);
+}
+
+.flash{
+  width: 80%;
+  margin:10px auto;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+.flash.success{
+  background: rgba(0,255,170,0.3);
+}
+.flash.warning{
+  background:rgba(255,255,0,0.3);
+}
+.flash.dangr{
+  background: rgba(255,0,0,0.3);
+}
+.flash.info{
+  background: rgba(0,140,255,0.3);
+}
+
+footer{
+  text-align: center;
+  color:#ddd;
+  padding: 15px 0;
+  margin-top: 30px;
+  font-size:14px;
+}
