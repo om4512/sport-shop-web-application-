@@ -42,7 +42,7 @@ def register():
       pw_hash=generate_password_hash(password)
       db=get_connection()
       cursor = db.cursor()
-      cursor.execute("INSERT INTO users (username,email,password_hash)VALUES (%s, %s,%s)", (username,email,pw_hash))
+      cursor.execute("INSERT INTO users (username,email,Password_hash)VALUES (%s, %s,%s)", (username,email,pw_hash))
       db.commit()
       db.close()
       flash("Registered succesfully, Please login","Success")
@@ -58,7 +58,7 @@ def login():
       cursor.execute("Select * FROM users WHERE username=%s",(username,))
       user=cursor.fetchone()
       db.close()
-      if user and check_password_hash(user["password_hash"],password):
+      if user and check_password_hash(user["Password_hash"],password):
           session["user_id"]= user["id"]
           session["username"]=user["username"]
           session["is_admin"]= bool(user["is_admin"])
