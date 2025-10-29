@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="detail">
+  <h2>{{ item.name }}</h2>
+  {% if item.image %}
+    <img src="{{ url_for('static', filename='uploads/' ~ item.image) }}" alt="{{ item.name }}" class="detail-img">
+  {% endif %}
+  <p><strong>Category:</strong> {{ item.category }}</p>
+  <p><strong>Price:</strong> ₹{{ '%.2f'|format(item.price) }}</p>
+  <p><strong>Stock:</strong> {{ item.stock }}</p>
+  <p>{{ item.description }}</p>
+
+  {% if is_admin %}
+    <a class="btn" href="{{ url_for('edit_equipment', item_id=item.id) }}">Edit</a>
+    <form action="{{ url_for('delete_equipment', item_id=item.id) }}" method="post" style="display:inline;">
+      <button class="btn-danger" type="submit">Delete</button>
+    </form>
+  {% else %}
+    <form action="{{ url_for('add_to_cart', equipment_id=item.id) }}" method="post">
+      <input type="number" name="quantity" value="1" min="1" max="{{ item.stock }}">
+      <button class="btn" type="submit">Add to Cart</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

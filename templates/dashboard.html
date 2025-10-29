@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<div class="stats">
+  <div class="stat">Users: {{ total_users }}</div>
+  <div class="stat">Products: {{ total_products }}</div>
+  <div class="stat">Stock: {{ total_stock }}</div>
+  <div class="stat">Cart Items: {{ cart_items }}</div>
+</div>
+
+<h3>Recently Added</h3>
+<div class="grid">
+  {% for r in recent %}
+  <div class="card">
+    {% if r.image %}<img src="{{ url_for('static', filename='uploads/' ~ r.image) }}">{% endif %}
+    <div class="card-body">
+      <h3>{{ r.name }}</h3>
+      <p>{{ r.category }}</p>
+      <p>₹{{ '%.2f'|format(r.price) }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

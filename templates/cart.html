@@ -1,26 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<h2> Your Cart</h2>
+<h2>Your Cart</h2>
 {% if rows %}
-<table>
-    <tr>
-        <th> Item</th>
-        <th> Quantity</th>
-        <th> Price </th>
-        <th> Total </th>
-    </tr>
+  <table class="cart-table">
+    <tr><th>Item</th><th>Price</th><th>Qty</th><th>Line</th><th>Action</th></tr>
     {% for r in rows %}
-    <tr>
+      <tr>
         <td>{{ r.name }}</td>
+        <td>₹{{ '%.2f'|format(r.price) }}</td>
         <td>{{ r.quantity }}</td>
-        <td>{{ r.price }}</td>
-        <td>{{ r.price * r.quantity }}</td>
-    </tr>
+        <td>₹{{ '%.2f'|format(r.price * r.quantity) }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('remove_from_cart', cart_id=r.cart_id) }}">
+            <button type="submit" class="btn-small">Remove</button>
+          </form>
+        </td>
+      </tr>
     {% endfor %}
-</table>
-<h3> Total: ₹{{ total }}</h3>
+    <tr><td colspan="3" style="text-align:right"><strong>Total</strong></td><td colspan="2">₹{{ '%.2f'|format(total) }}</td></tr>
+  </table>
+  <form method="POST" action="{{ url_for('checkout') }}">
+    <button class="btn" type="submit">Checkout</button>
+  </form>
 {% else %}
-<p> Your cart is empty.</p>
+  <p>Your cart is empty.</p>
 {% endif %}
-<a href="{{ url_for('index')}}"> ⬅ Back to Shopping </a>
-{% endblock content %}
+{% endblock %}

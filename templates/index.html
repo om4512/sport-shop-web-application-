@@ -1,35 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>All Sports Equipment</h2>
-
-{% if session.get('is_admin') %}
-  <a href="{{ url_for('add_equipment') }}" class="btn">➕ Add New Product</a>
-{% endif %}
-
-<hr>
-<div class="container">
+<h2>Available Equipment</h2>
+<div class="grid">
   {% for item in items %}
   <div class="card">
-  {% if item.image %}
-      <img src="{{ url_for('static', filename='uploads/' ~ item.image) }}" width="150" alt="{{ item.name }}">
+    {% if item.image %}
+      <img src="{{ url_for('static', filename='uploads/' ~ item.image) }}" alt="{{ item.name }}">
     {% else %}
-      <img src="{{ url_for('static', filename='no_image.png') }}" width="150" alt="No image">
+      <img src="{{ url_for('static', filename='css/no_image.png') }}" alt="no-image">
     {% endif %}
-    <h3>{{ item.name }}</h3>
-    <p><b>Category:</b> {{ item.category }}</p>
-    <p><b>Price:</b> ₹{{ item.price }}</p>
-    <p><b>Stock:</b> {{ item.stock }}</p>
+    <div class="card-body">
+      <h3>{{ item.name }}</h3>
+      <p class="muted">{{ item.category }}</p>
+      <p class="price">₹{{ '%.2f'|format(item.price) }}</p>
+      <p>Stock: {{ item.stock }}</p>
 
-    {% if session.get('is_admin') %}
-      <a href="{{ url_for('edit_equipment', item_id=item.id) }}">✏ Edit</a> |
-      <a href="{{ url_for('delete_equipment', item_id=item.id) }}">🗑 Delete</a>
-    {% else %}
-      <form action="{{ url_for('add_to_cart', item_id=item.id) }}" method="post">
-        <input type="number" name="quantity" value="1" min="1">
-        <button type="submit">Add to Cart 🛒</button>
+      <a class="btn" href="{{ url_for('equipment_detail', item_id=item.id) }}">Details</a>
+
+      {% if not is_admin %}
+      <form action="{{ url_for('add_to_cart', equipment_id=item.id) }}" method="post" style="display:inline-block;">
+        <input type="number" name="quantity" value="1" min="1" max="{{ item.stock }}" style="width:70px;">
+        <button class="btn-small" type="submit">Add to Cart</button>
       </form>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
   {% endfor %}
 </div>
-{% endblock content %}
+{% endblock %}

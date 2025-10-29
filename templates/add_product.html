@@ -1,8 +1,8 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
 <div class="glass-form">
   <h1>➕ Add New Product </h1>
-  <form method="POST" emctype="multipart/form-data">
+  <form method="POST" enctype="multipart/form-data">
     <label> Name:</label>
     <input type="text" name="name" required><br>
     <label> Category: </label>
@@ -10,9 +10,9 @@
     <label> Description:</label>
     <input type="text" name="description" required><br>
     <label> Price:</label>
-    <input type="number" name="price" required><br>
+    <input type="number" name="price" step="0.01" required><br>
     <label> Stock:</label>
-    <input tye="number" name="stock" required><br>
+    <input type="number" name="stock" required><br>
     <label> Image: </label>
     <input type="file" name="image" accept="image/*"><br><br>
     <button type="submit"> Add Equipment</button>
@@ -20,4 +20,4 @@
   <br>
   <a href="{{ url_for('index')}}">⬅ Back</a>
   </div>
-{ % endblock content %}
+{% endblock %}
